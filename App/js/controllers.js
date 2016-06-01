@@ -6,4 +6,8 @@ angular.module('liveApp.controllers', ['liveApp.services'])
       $scope.divertingroomlist=liveRoomList.getList("Diverting");
       $scope.csroomlist=liveRoomList.getList("CS");
       $scope.redroomlist=liveRoomList.getList("Red");
-  });
+  })
+    .controller('bodyCtr', function ($scope) {
+        
+    })
+;

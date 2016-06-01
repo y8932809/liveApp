@@ -6,7 +6,8 @@ angular.module('liveApp',
         //'liveApp.filters',
         //'liveApp.constants',
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ng-iscroll'
     ])
     .config(function($stateProvider, $urlRouterProvider) {
 

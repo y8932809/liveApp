@@ -11,6 +11,8 @@
 
     <script src="ngmodules/angular-ui-router.js"></script>
     <script src="ngmodules/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="ngmodules/iscroll.js"></script>
+    <script src="ngmodules/ng-iscroll.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/controllers.js"></script>
     <script src="./js/constants.js"></script>
@@ -20,16 +22,16 @@
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
 
 </head>
-<body>
+<body ng-controller="bodyCtr">
 <header class="topNav">
     <div>
         虎牙直播
     </div>
 </header>
 
-<!--<ng-include src="'views/productList.html'"></ng-include> -->
-<div ui-view>
-
+<div  id="wrapper" ng-iscroll='wrapper' ng-iscroll-delay='50' >
+    <div id="scroller" ui-view>
+    </div>
 </div>
 <footer class="bottomNav">
     <div>
