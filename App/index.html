@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="liveApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>虎牙直播</title>
+    <script src="./resource/script/angular.js"></script>
+    <link href="./resource/css/bootstrap.css" rel="stylesheet">
+    <link href="./resource/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="./resource/css/style.css" rel="stylesheet">
+
+    <script src="ngmodules/angular-ui-router.js"></script>
+    <script src="ngmodules/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/controllers.js"></script>
+    <script src="./js/constants.js"></script>
+    <script src="./js/directives.js"></script>
+    <script src="./js/filters.js"></script>
+    <script src="./js/services.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+</head>
+<body>
+<header class="topNav">
+    <div>
+        虎牙直播
+    </div>
+</header>
+
+<!--<ng-include src="'views/productList.html'"></ng-include> -->
+<div ui-view>
+
+</div>
+<footer class="bottomNav">
+    <div>
+    直播
+</div>
+    <div>
+       娱乐
+    </div>
+    <div>
+       发现
+    </div>
+    <div>
+        我的
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    font: 16px 'Microsoft Yahei','helvetica','arial';
+    background-color: rgb(230,230,230);
+}
+/*页面头部*/
+.topNav{
+    height: 3rem;
+    background-color: rgb(249,249,249);
+    line-height: 3rem;
+    text-align: center;
+    color: #3d4245;
+    font-size: 1.5rem;
+}
+/*页面底部*/
+.bottomNav{
+    height: 3.5rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    _position: absolute;
+    _top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
+    text-align: center;
+    line-height: 3.5rem;
+    background-color: rgb(249,249,249);
+    display: flex;
+    /*从左到右*/
+    flex-direction: row;
+    /*超出不换行*/
+    flex-wrap: nowrap;
+
+}
+.bottomNav div{
+    flex: 1;
+}
+/*广告条*/
+.bannerDiv{
+    height: 6rem;
+    width: 100%;
+}
+/*导航条*/
+.navBar{
+    font-size: 14px;
+    height: 2.5rem;
+    width: 100%;
+    text-align: center;
+    line-height: 2.5rem;
+    background-color: rgb(249,249,249);
+    display: flex;
+    /*从左到右*/
+    flex-direction: row;
+    /*超出不换行*/
+    flex-wrap: nowrap;
+}
+.navBar div{
+    flex: 1;
+}
+/*房间列表*/
+.liveRoomList{
+    /*bottom: 3rem;*/
+    /*position:relative;*/
+}
+.liveRooms{
+    font-size: 14px;
+    width: 100%;
+    display: inline-block;
+
+}
+.liverooms_titleDiv{
+    width: 100%;
+    height: 2rem;
+    padding-left: 5px;
+    line-height: 2rem;
+    font-size: 12px;
+}
+.liverooms_contentDiv{
+    width: 50%;
+    float: left;
+    font-size: 10px;
+    padding-left: 4px;
+}
+.liverooms_imgDiv{
+    width: 100%;
+}
+
+.liverooms_imgDiv img{
+    width: 100%;
+}
+.liverooms_fontDiv{
+    padding-left: 5px;
+    height: 2rem;
+    line-height: 2rem;
+    border-bottom: 1px solid rgb(220,220,220);
+    background-color: rgb(249,249,249);
+}

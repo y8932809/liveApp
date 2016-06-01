@@ -1,0 +1,15 @@
+<div class="liveRooms">
+    <div class="liverooms_titleDiv">
+        {{roomTitle}}
+    </div>
+    <div class="liverooms_contentDiv" ng-repeat="item in roomList" >
+           <div class="liverooms_imgDiv">
+               <img ng-src="{{item.Img}}">
+           </div>
+        <div  class="liverooms_fontDiv">
+            {{item.Name}}
+        </div>
+    </div>
+
+
+</div>
