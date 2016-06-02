@@ -8,7 +8,6 @@
     <link href="./resource/css/bootstrap.css" rel="stylesheet">
     <link href="./resource/css/bootstrap-theme.css" rel="stylesheet">
     <link href="./resource/css/style.css" rel="stylesheet">
-
     <script src="ngmodules/angular-ui-router.js"></script>
     <script src="ngmodules/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="ngmodules/iscroll.js"></script>
@@ -19,20 +18,22 @@
     <script src="./js/directives.js"></script>
     <script src="./js/filters.js"></script>
     <script src="./js/services.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-
 </head>
-<body ng-controller="bodyCtr">
+<body ng-controller="bodyCtrl">
+
 <header class="topNav">
     <div>
         虎牙直播
     </div>
 </header>
+<div id="wrapper" ng-iscroll='wrapper' ng-iscroll-delay='50'>
+    <div id="scroller">
+        <div  ui-view>
 
-<div  id="wrapper" ng-iscroll='wrapper' ng-iscroll-delay='50' >
-    <div id="scroller" ui-view>
+        </div>
     </div>
 </div>
+
 <footer class="bottomNav">
     <div>
     直播
