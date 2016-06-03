@@ -18,24 +18,7 @@ angular.module('liveApp',
             .state('main', {
                 url: '/main',
                 templateUrl: './views/main.html',
-                controller: 'mainCtrl',
-                resolve: {
-                    allroomlist:  function(liveRoomList){
-                       return liveRoomList.getList("ALL");
-                    },
-                    lolroomlist:  function(liveRoomList){
-                        return liveRoomList.getList("LOL");
-                    },
-                    divertingroomlist:  function(liveRoomList){
-                        return liveRoomList.getList("Diverting");
-                    }
-                },
-                controller: function($scope,allroomlist,lolroomlist,divertingroomlist){
-
-                    $scope.allroomlist = allroomlist;
-                    $scope.lolroomlist = lolroomlist;
-                    $scope.divertingroomlist = divertingroomlist;
-                }
+                controller: 'mainCtrl'
             })
             .state('liveroom', {
                 url: '/liveroom',
@@ -47,6 +30,16 @@ angular.module('liveApp',
                 url: '/register',
                 templateUrl: 'views/register.html',
                 controller: 'registerCtrl'
+            })
+            .state('addliveroom', {
+                url: '/addliveroom',
+                templateUrl: 'views/addliveroom.html',
+                controller: 'addliveroomCtrl'
+            })
+            .state('addliveroomphoto', {
+                url: '/addliveroomphoto/:roomid',
+                templateUrl: 'views/addliveroomphoto.html',
+                controller: 'addliveroomphotoCtrl'
             })
         //.state('login', {
         //    url:'/login',

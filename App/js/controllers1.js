@@ -10,9 +10,6 @@ angular.module('liveApp.controllers', ['liveApp.services',
         liveRoomList.getCategoryList('game','LOL').then(function (result) {
             $scope.lolroomlist = result;
         });
-        liveRoomList.getCategoryList('diverting','GoodVoice').then(function (result) {
-            $scope.divertingroomlist = result;
-        });
     })
     .controller('bodyCtrl', function ($scope) {
         $scope.refreshiScroll = function () {
@@ -82,32 +79,22 @@ angular.module('liveApp.controllers', ['liveApp.services',
         }
 
     })
-    .controller('addliveroomphotoCtrl',function($scope, $stateParams,$location,FileUploader,apiurl){
+    .controller('addliveroomphotoCtrl',function($scope, $stateParams,FileUploader,apiurl){
+      $scope.roomid= $stateParams.roomid;
 
         var uploader = $scope.uploader = new FileUploader({
-            url:apiurl+'rooms/addroomphoto/'+$stateParams.roomid,
-
+            url:apiurl+'rooms/addroomphoto',
+            //data: { 'roomid':  $scope.roomid },
+            //filters: [{
+            //    roomid:  $scope.roomid ,
+            //    // A user-defined filter
+            //    fn: function(item) {
+            //        return true;
+            //    }
+            //}]
         });
 
-        $scope.UploadFile = function(){
-            uploader.uploadAll();
-        }
-
-
-        $scope.clearItems = function(){    //重新选择文件时，清空队列，达到覆盖文件的效果
-            uploader.clearQueue();
-        }
-
-        uploader.onAfterAddingFile = function(fileItem) {
-            $scope.fileItem = fileItem._file;    //添加文件之后，把文件信息赋给scope
-        };
-
-        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            $scope.uploadStatus = true;   //上传成功则把状态改为true
-            alert("上传成功！")
-            $location.path('/main'); //暂时跳转至主目录
-        };
-
+        // FILTERS
 
         uploader.filters.push({
             name: 'imageFilter',
@@ -116,5 +103,43 @@ angular.module('liveApp.controllers', ['liveApp.services',
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
+
+        // CALLBACKS
+
+        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+            console.info('onWhenAddingFileFailed', item, filter, options);
+        };
+        uploader.onAfterAddingFile = function(fileItem) {
+            console.info('onAfterAddingFile', fileItem);
+        };
+        uploader.onAfterAddingAll = function(addedFileItems) {
+            console.info('onAfterAddingAll', addedFileItems);
+        };
+        uploader.onBeforeUploadItem = function(item) {
+            console.info('onBeforeUploadItem', item);
+        };
+        uploader.onProgressItem = function(fileItem, progress) {
+            console.info('onProgressItem', fileItem, progress);
+        };
+        uploader.onProgressAll = function(progress) {
+            console.info('onProgressAll', progress);
+        };
+        uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+        uploader.onErrorItem = function(fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+        };
+        uploader.onCancelItem = function(fileItem, response, status, headers) {
+            console.info('onCancelItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteAll = function() {
+            console.info('onCompleteAll');
+        };
+
+        console.info('uploader', uploader);
     })
 ;

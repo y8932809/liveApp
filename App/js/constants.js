@@ -3,4 +3,5 @@
  */
 angular.module('liveApp.constants',[])
   .constant('apiurl','http://localhost:3000/')
+    .constant('imgurl','../resource/photos/')
 ;
