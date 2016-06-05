@@ -55,7 +55,7 @@ angular.module('liveApp.controllers', ['liveApp.services',
             },
             {
                 label: '娱乐',
-                value: 'diverting',
+                value: 'divertings',
                 provinces: [
                     {
                         label: '好声音',

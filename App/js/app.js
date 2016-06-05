@@ -1,3 +1,4 @@
+//添加路由权限，添加房间页面需要进行登录验证
 angular.module('liveApp',
     ['liveApp.controllers',
         'liveApp.services',
@@ -21,8 +22,8 @@ angular.module('liveApp',
                 controller: 'mainCtrl'
             })
             .state('liveroom', {
-                url: '/liveroom',
-                templateUrl: './views/liveroom.html',
+                url: 'liveroom',
+                templateUrl: './views/rooms/liveroom.html',
                 controller: 'liveRoomCtrl'
             })
 
@@ -33,14 +34,40 @@ angular.module('liveApp',
             })
             .state('addliveroom', {
                 url: '/addliveroom',
-                templateUrl: 'views/addliveroom.html',
+                templateUrl: 'views/rooms/addliveroom.html',
                 controller: 'addliveroomCtrl'
             })
             .state('addliveroomphoto', {
                 url: '/addliveroomphoto/:roomid',
-                templateUrl: 'views/addliveroomphoto.html',
+                templateUrl: 'views/rooms/addliveroomphoto.html',
                 controller: 'addliveroomphotoCtrl'
             })
+            .state('myroomlist', {
+                url: '/myroomlist',
+                templateUrl: 'views/rooms/myroomlist.html',
+                controller: 'myRoomListCtrl'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/login.html',
+                controller: 'loginCtrl'
+            })
+            .state('my', {
+                url: '/my',
+                templateUrl: 'views/my.html',
+                controller: 'myCtrl'
+            })
+            .state('divertingmain', {
+                url: '/divertingmain',
+                templateUrl: 'views/divertings/divertingmain.html',
+                controller: 'divertingMainCtrl'
+            })
+            .state('discovermain', {
+                url: '/discovermain',
+                templateUrl: 'views/discovers/discovermain.html',
+                controller: 'discoverMainCtrl'
+            })
+
         //.state('login', {
         //    url:'/login',
         //    templateUrl: 'templates/login.html',

@@ -3,8 +3,21 @@ var router = express.Router();
 var Users = require('../models/Users');
 var user = new Users();
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/login', function(req, res, next) {
+  var userName=req.body.UserName;
+  var passWord=req.body.PassWord;
+  Users.find({UserName:userName,PassWord:passWord}, function (err, user) {
+      if(err){
+       return err;
+      }
+    if(user&&user.length>0){
+      res.send({state:'success',user:user});
+    }
+    else{
+      res.send({state:'error'});
+    }
+
+  })
 });
 router.post('/adduser', function (req, res) {
   user.Name = req.body.Name;
@@ -12,6 +25,7 @@ router.post('/adduser', function (req, res) {
   user.PhoneNumber = req.body.PhoneNumber;
   user.IdCard = req.body.IdCard;
   user.Identity = req.body.Identity;
+  user.PassWord = req.body.PassWord;
   user.CreateTime = Date.now();
 
   //user.Name = '¹þ¹þ';

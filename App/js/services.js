@@ -1,19 +1,26 @@
 angular.module('liveApp.services', [  'liveApp.constants'])
     .factory("liveRoomList", function ($http,$q,apiurl) {
         return{
-            getAllList: function () {
+            getAllList: function (count) {
+                count=count||20;
                 var deferred = $q.defer();
                 var promise = deferred.promise;
-                $http.get(apiurl+'rooms/getallrooms')
-                    .success(function (result) {
-                            deferred.resolve(result);
-                    })
-                    .error(function (error) {
-                        deferred.reject(error);
-                    });
+                $http({
+                    url:apiurl+'rooms/getallrooms',
+                    method:'GET',
+                    params:{
+                        'count':count
+                    }
+                }).success(function(result,header,config,status){
+                    deferred.resolve(result);
+
+                }).error(function(result,header,config,status){
+                    deferred.reject(error);
+                });
                 return promise;
             },
-            getCategoryList: function (bigCategory,smallCategory) {
+            getCategoryList: function (bigCategory,smallCategory,count) {
+                count=count||20;
                 var deferred = $q.defer();
                 var promise = deferred.promise;
                 $http({
@@ -21,7 +28,27 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                     method:'GET',
                     params:{
                         'bigCategory':bigCategory,
-                        'smallCategory':smallCategory
+                        'smallCategory':smallCategory,
+                        'count':count
+                    }
+                }).success(function(result,header,config,status){
+                    deferred.resolve(result);
+
+                }).error(function(result,header,config,status){
+                    deferred.reject(error);
+                });
+                return promise;
+            },
+            getMyroomList: function (userid,count) {
+                count=count||20;
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                $http({
+                    url:apiurl+'rooms/getmyrooms',
+                    method:'GET',
+                    params:{
+                        'userId':userid,
+                        'count':count
                     }
                 }).success(function(result,header,config,status){
                     deferred.resolve(result);
@@ -31,11 +58,104 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                 });
                 return promise;
             }
+        }
+    })
+    .factory('userService', function ($http,$q,apiurl) {
+        return{
+            login: function (user) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                $http({
+                    url:apiurl+'users/login',
+                    method:'POST',
+                    data:user
+                }).success(function(result,header,config,status){
+                    deferred.resolve(result);
+
+                }).error(function(result,header,config,status){
+                    deferred.reject(error);
+                });
+                return promise;
+            },
+            register: function (user) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                $http({
+                    url:apiurl+'users/adduser',
+                    method:'POST',
+                    data:user
+                }).success(function(result,header,config,status){
+                    deferred.resolve(result);
+
+                }).error(function(result,header,config,status){
+                    deferred.reject(error);
+                });
+                return promise;
+            },
+            getUserInfo: function () {
+                if(window.localStorage) {
+                    var userInfoJson=localStorage.getItem('user');
+                    var userInfo=JSON.parse(userInfoJson)
+                    return userInfo;
+                }
+                else{
+                    return null;//待修改
+                }
+            },
+            setUserInfo: function (user) {
+                if(window.localStorage) {
+                    var userJson=JSON.stringify(user);
+                    localStorage.setItem('user', userJson);
+                }
+                else{
+                    //待添加不支持
+                }
+            },
+            logout: function () {
+                if(window.localStorage) {
+                    localStorage.removeItem('user');
+                }
+                else{
+                    //待添加不支持
+                }
+            }
 
         }
     })
-
-
+    .factory('navigationBarService', function () {
+        return{
+            getNavBar: function (navBarType) {
+                //暂时用本地数据代替
+                var slides=[];
+                switch (navBarType){
+                    case  'main':
+                        slides.push({ image: '../resource/images/lolbar1.jpg', text: '' });
+                        slides.push({ image: '../resource/images/lolbar2.jpg', text: '' });
+                        slides.push({ image: '../resource/images/lolbar3.jpg', text: '' });
+                        slides.push({ image: '../resource/images/divertingbar.jpg', text: '' });
+                        break;
+                    case  'discovermain':
+                        slides.push({ image: '../resource/images/divertingbar.jpg', text: '' });
+                        slides.push({ image: '../resource/images/divertingbar1.jpg', text: '' });
+                        slides.push({ image: '../resource/images/divertingbar2.jpg', text: '' });
+                        slides.push({ image: '../resource/images/divertingbar3.jpg', text: '' });
+                        break;
+                }
+                return slides;
+            }
+        }
+    })
+    .service('sessionService', function (user) {
+        this.create= function (sessionId,user) {
+            this.id=sessionId;
+            this.user=user;
+        }
+        this.destory= function () {
+            this.id=null;
+            this.user=null;
+        }
+        return this;
+    })
 
 
 

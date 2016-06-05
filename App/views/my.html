@@ -1,0 +1,10 @@
+<div class="list-group">
+    <a href="javascript:" class="list-group-item" ng-if="user">{{user.Name}}</a>
+    <a href="javascript:" class="list-group-item">我的订阅</a>
+    <button ng-click="addliveroom()" class="list-group-item">添加房间</button>
+    <button ng-click="myroomlist()" class="list-group-item">我要开播</button>
+    <a href="javascript:" class="list-group-item">充值</a>
+    <a href="javascript:" class="list-group-item">设置</a>
+    <button ng-if="user==null" ng-click="login()" class="btn btn-lg btn-primary btn-block">登录</button>
+    <button ng-if="user" ng-click="logout()" class="btn btn-lg btn-primary btn-block">退出</button>
+</div>

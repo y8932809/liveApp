@@ -1,0 +1,11 @@
+<div class="container">
+    <!--novalidate-->
+    <form class="form-signin" role="form" ng-submit="login(user)"  >
+        <h2 class="form-signin-heading">欢迎登陆</h2>
+    <input type="text" ng-model="user.UserName" class="form-control" placeholder="用户名" required autofocus>
+    <input type="password" ng-model="user.PassWord" class="form-control" placeholder="密码" required>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+        <button ng-click="register()" class="btn btn-lg btn-primary btn-block">注册</button>
+    </form>
+
+</div>

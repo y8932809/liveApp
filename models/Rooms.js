@@ -6,6 +6,7 @@ var schema=new mongoose.Schema({
     SmallCategory:String, //房间类别
     Img:String,
     CreateTime:Date,
+    UserId:String
 });
 //mongoose.model('Photo',schema);
 module.exports=mongoose.model('Rooms',schema);

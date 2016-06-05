@@ -7,28 +7,41 @@ var util = require('util');
 var fs = require('fs');
 /* GET rooms listing. */
 router.get('/getallrooms', function(req, res, next) {
-
-
+    var count= parseInt(req.query.count);
     Rooms.find({}, function (err,rooms) {
         if(err){
             return next(err);
         }
         //console.log(rooms);
         res.send({rooms:rooms});
-    }).limit(4); //只查询4条数据
+    }).limit(count); //只查询4条数据
 });
 //按分类查找房间列表
 router.get('/getcategoryrooms', function(req, res, next) {
    var bigCategory=  req.query.bigCategory;
     var smallCategory=  req.query.smallCategory;
+    var count= parseInt(req.query.count);
     Rooms.find({BigCategory:bigCategory,SmallCategory:smallCategory}, function (err,rooms) {
         if(err){
             return next(err);
         }
         //console.log(rooms);
         res.send({rooms:rooms});
-    });
+    }).limit(count);
 });
+//查找我的房间列表
+router.get('/getmyrooms', function(req, res, next) {
+   var userId=req.query.userId;
+    var count= parseInt(req.query.count);
+    Rooms.find({UserId:userId}, function (err,rooms) {
+        if(err){
+            return next(err);
+        }
+        //console.log(rooms);
+        res.send({rooms:rooms});
+    }).limit(count);
+});
+
 //添加房间照片
 router.post('/addroomphoto/:id', function (req, res) {
     //生成multiparty对象，并配置上传目标路径
@@ -100,7 +113,7 @@ router.post('/addroom', function (req, res) {
     room.SmallCategory = req.body.SmallCategory;
     room.Img = "base.jpg";
     room.CreateTime = Date.now();
-
+    room.UserId=req.body.UserId;
     room.save(function (err,room) {
         if (err) {
             console.log('save failed');

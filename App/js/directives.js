@@ -9,13 +9,13 @@ angular.module('liveApp.directives', [
             restrict:'EA',
             link: function (scope, element, attrs) {
                 scope.myInterval = 5000;
-                scope.slides=[];
-                scope.slides.push({ image: '../resource/images/red.jpg', text: '' });
-                scope.slides.push({ image: '../resource/images/cs.jpg', text: '' });
-                scope.slides.push({ image: '../resource/images/lol.jpg', text: '' });
+                //scope.slides=roomImages;
+                //scope.slides.push({ image: '../resource/images/red.jpg', text: '' });
+                //scope.slides.push({ image: '../resource/images/cs.jpg', text: '' });
+                //scope.slides.push({ image: '../resource/images/lol.jpg', text: '' });
             },
             scope:{
-                roomImages:"@roomImages" //传入的参数名，如果有大写，需要和指令的规则一样，有一个 “-”
+                roomImages:"=roomImages" //传入的参数名，如果有大写，需要和指令的规则一样，有一个 “-”
             },
             templateUrl:"../components/bannersLiveRoomTemp.html"
         }
