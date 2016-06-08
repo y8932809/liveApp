@@ -1,14 +1,14 @@
-<div class="liveRooms" ng-show="roomList">
+
+<div class="liveRooms" ng-show="roomList.length>0">
     <div class="liverooms_titleDiv">
         {{roomTitle}}
     </div>
-    <div class="liverooms_contentDiv" ng-repeat="item in roomList" >
-           <div class="liverooms_imgDiv">
+    <div class="liverooms_contentDiv"  ng-click="comeroom(item._id)" ng-repeat="item in roomList" >
+        <div class="liverooms_imgDiv">
                <img ng-src="{{imgurl+item.Img}}">
            </div>
         <div  class="liverooms_fontDiv">
             {{item.Name}}
         </div>
     </div>
-
 </div>

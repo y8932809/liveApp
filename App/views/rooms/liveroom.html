@@ -1,3 +1,23 @@
-<div>
-    直播间
+<div class="container">
+    <div class="row">
+            <!-- 聊天内容 -->
+            <div class="panel panel-default">
+                <div class="panel-body chat-body">
+                    <div class="msg-list-body">
+
+                        <div ng-repeat="item in message | orderBy :'time'" class="clearfix msg-wrap">
+                            <div class="msg-head">
+                                <span class="msg-name label label-primary pull-left">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{item.type}}</span>
+                                <span class="msg-time label label-default pull-left">
+                                <span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;{{item.time}}</span>
+                            </div>
+                            <div class="msg-content">{{item.msg}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
+

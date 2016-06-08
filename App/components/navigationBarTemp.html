@@ -1,15 +1,5 @@
-<div class="navBar">
-    <div>
-        全部直播
+<div class="navBar" id="status-buttons">
+    <div ng-repeat="item in menuArray">
+        <a ui-sref-active="active" ui-sref="{{item.sref}}"><span>{{item.menu}}</span></a>
     </div>
-    <div>
-        英雄联盟
-    </div>
-    <div>
-        主机游戏
-    </div>
-    <div>
-        娱乐
-    </div>
-
 </div>

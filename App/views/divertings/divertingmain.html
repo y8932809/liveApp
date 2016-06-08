@@ -1,8 +1,6 @@
-<div navigation-Bar></div>
-<div banners-Live-Room room-Images="images"></div>
-<div class="liveRoomList">
-    <div live-Rooms room-Title="颜值" room-List="goodlookroomlist.rooms"></div>
-    <div live-Rooms room-Title="舞蹈" room-List="danceroomlist.rooms"></div>
-    <div live-Rooms room-Title="好声音" room-List="divertingroomlist.rooms"></div>
-    <div live-Rooms room-Title="脱口秀" room-List="talkshowroomlist.rooms"></div>
+<div navigation-Bar  bar-Type="divertingmain"></div>
+<div id="wrapper" ng-iscroll='wrapper' ng-iscroll-delay='50'>
+    <div id="scroller">
+        <div  id="main-views" ui-view></div>
+    </div>
 </div>

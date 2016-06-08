@@ -9,5 +9,4 @@ var schema=new mongoose.Schema({
     CreateTime:Date,
     PassWord:String,
 });
-//mongoose.model('Photo',schema);
 module.exports=mongoose.model('Users',schema);

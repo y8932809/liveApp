@@ -1,7 +1,7 @@
-<div navigation-Bar></div>
-<div banners-Live-Room room-Images="images"></div>
-<div class="liveRoomList">
-<div live-Rooms room-Title="全部直播" room-List="allroomlist.rooms"></div>
-<div live-Rooms room-Title="英雄联盟直播" room-List="lolroomlist.rooms"></div>
-<div live-Rooms room-Title="娱乐直播" room-List="divertingroomlist.rooms"></div>
+<div navigation-Bar bar-Type="main"></div>
+
+<div id="wrapper" ng-iscroll='wrapper' ng-iscroll-delay='50'>
+    <div id="scroller">
+        <div  id="main-views" ui-view></div>
+    </div>
 </div>

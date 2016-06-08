@@ -42,7 +42,7 @@ body{
 /*导航条*/
 .navBar{
     font-size: 14px;
-    height: 2.5rem;
+    height: 3rem;
     width: 100%;
     text-align: center;
     line-height: 2.5rem;
@@ -56,6 +56,101 @@ body{
 .navBar div{
     flex: 1;
 }
+
+#status-buttons a {
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+#status-buttons a:hover {
+    text-decoration: none;
+}
+
+/* we will style the span as the circled number */
+#status-buttons span {
+    display: block;
+    border-radius: 15%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+#status-buttons a.active span {
+    background: rgb(231,231,231);
+}
+
+/*页面切换*/
+#form-views {
+    width: auto;
+}
+#main-views.ng-enter,
+#main-views.ng-leave {
+    position: absolute;
+    transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+}
+
+#main-views.ng-enter {
+    -webkit-animation: slideInRight 0.5s both ease;
+    -moz-animation: slideInRight 0.5s both ease;
+    animation: slideInRight 0.5s both ease;
+}
+
+#main-views.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease;
+    -moz-animation: slideOutLeft 0.5s both ease;
+    animation: slideOutLeft 0.5s both ease;
+}
+
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+@-moz-keyframes slideOutLeft {
+    to {
+        -moz-transform: translateX(-200%);
+    }
+}
+
+@-webkit-keyframes slideOutLeft {
+    to {
+        -webkit-transform: translateX(-200%);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(200%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@-moz-keyframes slideInRight {
+    from {
+        -moz-transform: translateX(200%);
+    }
+    to {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideInRight {
+    from {
+        -webkit-transform: translateX(200%);
+    }
+    to {
+        -webkit-transform: translateX(0);
+    }
+}
+
 /*房间列表*/
 .liveRoomList{
     /*bottom: 3rem;*/
@@ -69,10 +164,10 @@ body{
 }
 .liverooms_titleDiv{
     width: 100%;
-    height: 2rem;
+    height: 2.5rem;
     padding-left: 5px;
-    line-height: 2rem;
-    font-size: 12px;
+    line-height: 2.5rem;
+    font-size: 10px;
 }
 .liverooms_contentDiv{
     width: 50%;
@@ -95,26 +190,7 @@ body{
     border-bottom: 1px solid rgb(220,220,220);
     background-color: rgb(249,249,249);
 }
-/*iscroll样式*/
-/** {*/
-    /*-webkit-box-sizing: border-box;*/
-    /*-moz-box-sizing: border-box;*/
-    /*box-sizing: border-box;*/
-/*}*/
 
-/*html {*/
-    /*-ms-touch-action: none;*/
-/*}*/
-
-/*#wrapper {*/
-    /*position: absolute;*/
-    /*z-index: 1;*/
-    /*top: 40px;*/
-    /*bottom: 48px;*/
-    /*left: 0;*/
-    /*width: 100%;*/
-    /*overflow: hidden;*/
-/*}*/
 /*广告条样式*/
 .carousel-inner  .item img {
     height: 12rem;
@@ -128,10 +204,13 @@ body {
 }
 
 #wrapper {
-    position:absolute; z-index:1;
-    top:45px; bottom:48px; left:0;
-    width:100%;
-    overflow:auto;
+    position: absolute;
+    z-index: 1;
+    top: 6rem;
+    bottom: 48px;
+    left: 0;
+    width: 100%;
+    overflow: auto;
 }
 
 #scroller, .scroller {
@@ -143,4 +222,67 @@ body {
 }
 
 
+/*直播间 样式*/
+.chat-body{
+    overflow-y:scroll;
+/*//需要自适应*/
+    height:500px;
+    padding:0px;
+}
+
+.list-body{
+    overflow-y:scroll;
+    height:450px;
+    padding:0px;
+}
+
+.msg-list-body{
+    margin:8px;
+}
+
+.msg-wrap{
+    margin-top: 0px;
+    margin-bottom: 8px;
+    padding: 0px;
+}
+
+.msg-content{
+    margin-top: 14px;
+    padding: 8px;
+    padding-bottom: 4px;
+    background-color:#f5f5f5;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    word-break:break-all;
+}
+
+.img-icon{
+    width: 64px;
+    height: 64px;
+    border:2px solid #ccc;
+    border-radius: 4px;
+}
+
+.msg-head{
+    z-index:100;
+}
+
+.msg-name{
+    margin-left: 8px;
+}
+
+.msg-time{
+    margin-left: 8px;
+}
+
+.list-table{
+    margin-top: -1px;
+    margin-bottom: 0px;
+}
+
+.emotion-panel{
+    position:fixed;
+    display:none;
+    z-index:200;
+}
 

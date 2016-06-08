@@ -37,7 +37,7 @@ angular.module('ng-iscroll', []).directive('ngIscroll', function ()
         momentum: true,
         hScrollbar: false,
         mouseWheel: true,
-        click: false,
+        click: true,
         tap: true
       };
 

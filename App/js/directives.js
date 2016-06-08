@@ -9,39 +9,78 @@ angular.module('liveApp.directives', [
             restrict:'EA',
             link: function (scope, element, attrs) {
                 scope.myInterval = 5000;
-                //scope.slides=roomImages;
-                //scope.slides.push({ image: '../resource/images/red.jpg', text: '' });
-                //scope.slides.push({ image: '../resource/images/cs.jpg', text: '' });
-                //scope.slides.push({ image: '../resource/images/lol.jpg', text: '' });
             },
             scope:{
-                roomImages:"=roomImages" //´«ÈëµÄ²ÎÊıÃû£¬Èç¹ûÓĞ´óĞ´£¬ĞèÒªºÍÖ¸ÁîµÄ¹æÔòÒ»Ñù£¬ÓĞÒ»¸ö ¡°-¡±
+                roomImages:"=roomImages" //ä¼ å…¥çš„å‚æ•°åï¼Œå¦‚æœæœ‰å¤§å†™ï¼Œéœ€è¦å’ŒæŒ‡ä»¤çš„è§„åˆ™ä¸€æ ·ï¼Œæœ‰ä¸€ä¸ª â€œ-â€
             },
             templateUrl:"../components/bannersLiveRoomTemp.html"
         }
     })
-
     .directive('navigationBar', function () {
         return{
             restrict:'EA',
             link: function (scope,element,attrs) {
-
+                scope.menuArray=[]; //æš‚æ—¶ç”¨å‡æ•°æ®ï¼Œä»¥åç”¨å¤–éƒ¨ä¼ å…¥çš„æ•°æ®ã€‚
+               switch (scope.barType){
+                   case'main':
+                       scope.menuArray.push({menu:'å…¨éƒ¨ç›´æ’­',sref:'.index_1'});
+                       scope.menuArray.push({menu:'è‹±é›„è”ç›Ÿ',sref:'.index_2'});
+                       scope.menuArray.push({menu:'ä¸»æœºæ¸¸æˆ',sref:'.index_3'});
+                       scope.menuArray.push({menu:'åæç²¾è‹±',sref:'.index_4'});
+                       break;
+                   case'divertingmain':
+                      scope.menuArray.push({menu:'å…¨éƒ¨ç›´æ’­',sref:'.index_1'});
+                      scope.menuArray.push({menu:'é¢œå€¼',sref:'.index_2'});
+                      scope.menuArray.push({menu:'èˆè¹ˆ',sref:'.index_3'});
+                      scope.menuArray.push({menu:'è„±å£ç§€',sref:'.index_4'});
+                       break;
+               }
             },
-            scope:{},
+            scope:{
+                barType:'@barType'
+            },
             templateUrl:"../components/navigationBarTemp.html"
         }
     })
-    //Ö±²¥¼äÁĞ±í
-    .directive('liveRooms', function (imgurl) {
-
+    //ç›´æ’­é—´åˆ—è¡¨
+    .directive('liveRooms', function ($location,imgurl,userService,liveRoomService) {
         return{
             restrict:'EA',
             link: function (scope, element, attrs) {
                 scope.imgurl=imgurl;
+                scope.comeroom= function (roomid) {
+                    //è°ƒè¯•æ–¹ä¾¿ï¼Œæš‚æ—¶æ³¨é‡Šï¼Œç›´æ¥è·³è½¬
+                    //if(userService.getUserInfo()!=null){
+                    //    userid=userService.getUserInfo()[0]._id;
+                    //    liveRoomService.checkRoomByUserId(roomid,userid).then(
+                    //        function (result) {
+                    //            if(result.state=='success'){
+                    //                $location.path('/myliveroom/'+roomid);
+                    //            }
+                    //            else{
+                    //                $location.path('/liveroom/'+roomid);
+                    //            }
+                    //        },
+                    //        function () {
+                    //            alert('é”™è¯¯');
+                    //        }
+                    //    )
+                    //}
+                    //else{
+                    //    $location.path('/liveroom/'+roomid);
+                    //}
+                    if(scope.roomType=="1"){
+                        $location.path('/liveroom/'+roomid);
+                    }
+                    else{
+                        $location.path('/myliveroom/'+roomid);
+                    }
+                }
             },
             scope:{
                 roomTitle:"@roomTitle",
-                roomList:"=roomList"
+                roomList:"=roomList",
+                roomType:'@roomType'
             },
             templateUrl:"../components/liveRoomsTemp.html"
         }
@@ -90,89 +129,4 @@ angular.module('liveApp.directives', [
             }
         };
     }]);
-    //.directive('registerFieldError', function ($compile) {
-    //  return {
-    //    restrict: 'A',
-    //    require: 'ngModel',
-    //    link: function (scope, element, attrs, ngModel) {
-    //      var subScope = scope.$new(true);
-    //
-    //      subScope.hasError = function () {
-    //        //Èç¹ûÊÇÎŞĞ§¸ñÊ½²¢ÇÒÓÃ»§ÊäÈë¹ı
-    //        return ngModel.$invalid && ngModel.$dirty
-    //      };
-    //      subScope.errors = function () {
-    //        return ngModel.$error;
-    //      }
-    //      subScope.customMessages=scope.$eval(attrs.registerFieldError);
-    //      var hint = $compile('<ul class="" ng-if="hasError()"><li ng-repeat="(name,wrong) in errors()" ng-if="wrong">{{name|error:customMessages}}</li></ul>')
-    //      (subScope);
-    //      element.after(hint);
-    //    }
-    //  };
-    //})
-    //.directive('passwordFieldSame', function () {
-    //  return {
-    //    restrict: 'A',
-    //    require: 'ngModel',
-    //    link: function (scope, element, attrs, ngModel) {
-    //      var isSame = function (value) {
-    //        var anotherValue = scope.$eval(attrs.passwordFieldSame);
-    //        return value === anotherValue;
-    //      };
-    //      ngModel.$parsers.push(function (value) {
-    //        ngModel.$setValidity('same', isSame(value));
-    //        return isSame(value) ? value : undefined;
-    //      });
-    //      scope.$watch(
-    //        function () {
-    //          return scope.$eval(attrs.passwordFieldSame);
-    //        },
-    //        function () {
-    //          ngModel.$setValidity('same', isSame(ngModel.$modelValue));
-    //        }
-    //      );
-    //    }
-    //  }
-    //})
-    //.directive('imageCaptcha', function () {
-    //  return{
-    //    restrict:'A',
-    //    link: function (scope,elemet) {
-    //      var changeSrc= function () {
-    //        elemet.attr('src','/img/captcha.jpg?random='+new Date().getTime());
-    //        changeSrc();
-    //        elemet.on('click', function () {
-    //          changeSrc();
-    //        });
-    //      }
-    //    }
-    //  }
-    //})
-    //.directive('bfTemplate', function () {
-    //  return{
-    //    restrict:'A',
-    //    priority:2000,
-    //    compile: function (element) {
-    //      var template=element[0].outerHTML;
-    //      return function (scope,element,attrs) {
-    //        scope.$template=template;
-    //        if(!scope.$dataSource){
-    //          scope.$dataSource=scope.$eval(attrs.bfTemplate);
-    //        }
-    //      };
-    //    }
-    //  }
-    //})
-    //.directive('bfRecurse',function bfRecurse($compile){
-    //  return{
-    //    restrice:'A',
-    //    link: function (scope,element,attrs) {
-    //      var subScope=scope.$new(true);
-    //      subScope.$dataSource=scope.$eval(attrs.bfRecurse);
-    //      var dom=$compile(scope.$template)(subScope);
-    //      element.replaceWith(dom);
-    //    }
-    //  }
-    //})
 ;
