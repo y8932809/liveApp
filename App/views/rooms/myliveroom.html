@@ -1,38 +1,39 @@
-<div class="container">
-    <div class="row">
-        <!-- 聊天内容 -->
-        <div class="panel panel-default">
-            <div class="panel-body chat-body">
-                <div class="msg-list-body">
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--&lt;!&ndash; 聊天内容 &ndash;&gt;-->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-body chat-body">-->
+<!--<div class="msg-list-body">-->
 
-                    <div ng-repeat="item in message | orderBy :'time'" class="clearfix msg-wrap">
-                        <div class="msg-head">
-                                <span class="msg-name label label-primary pull-left">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{item.type}}</span>
-                                <span class="msg-time label label-default pull-left">
-                                <span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;{{item.time}}</span>
-                        </div>
-                        <div class="msg-content">{{item.msg}}</div>
-                    </div>
+<!--<div ng-repeat="item in message | orderBy :'time'" class="clearfix msg-wrap">-->
+<!--<div class="msg-head">-->
+<!--<span class="msg-name label label-primary pull-left">-->
+<!--<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{item.type}}</span>-->
+<!--<span class="msg-time label label-default pull-left">-->
+<!--<span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;{{item.time}}</span>-->
+<!--</div>-->
+<!--<div class="msg-content">{{item.msg}}</div>-->
+<!--</div>-->
 
-                </div>
-            </div>
-        </div>
-        <!-- 输入框 -->
-        <div class="input-group input-group-lg">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" id="emotion-btn" type="button">
-                        <img src="../../resource/img/emotion_smile.png" style="width:24px;height:24px;">
-                    </button>
-                </span>
-            <input ng-model="sayMessage" type="text" class="form-control" id="input-edit" placeholder="请输入聊天内容">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="say(sayMessage)">
-                        发送
-                        <span class="glyphicon glyphicon-send"></span>
-                    </button>
-                </span>
-        </div>
-    </div>
-</div>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; 输入框 &ndash;&gt;-->
+<!--<div class="input-group input-group-lg">-->
+<!--<span class="input-group-btn">-->
+<!--<button class="btn btn-default" id="emotion-btn" type="button">-->
+<!--<img src="../../resource/img/emotion_smile.png" style="width:24px;height:24px;">-->
+<!--</button>-->
+<!--</span>-->
+<!--<input ng-model="sayMessage" type="text" class="form-control" id="input-edit" placeholder="请输入聊天内容">-->
+<!--<span class="input-group-btn">-->
+<!--<button class="btn btn-default" type="button" ng-click="say(sayMessage)">-->
+<!--发送-->
+<!--<span class="glyphicon glyphicon-send"></span>-->
+<!--</button>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
+<live-room-by-host></live-room-by-host>

@@ -285,4 +285,7 @@ body {
     display:none;
     z-index:200;
 }
+.panel {
+    margin-bottom: 0px;
+}
 

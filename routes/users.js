@@ -30,6 +30,7 @@ router.post('/adduser', function (req, res) {
   user.save(function (err,result) {
     if (err) {
       console.log('save failed');
+      res.send({state:'error',user:result});
     }
     res.send({state:'success',user:result});
   });

@@ -40,7 +40,7 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                 return promise;
             },
             getMyroomList: function (userid,count) {
-                count=count||20;
+                count=count||100;
                 var deferred = $q.defer();
                 var promise = deferred.promise;
                 $http({
@@ -60,7 +60,7 @@ angular.module('liveApp.services', [  'liveApp.constants'])
             }
         }
     })
-    .factory('userService', function ($http,$q,apiurl) {
+    .factory('userService', function ($rootScope,$http,$q,apiurl) {
         return{
             login: function (user) {
                 var deferred = $q.defer();
@@ -96,13 +96,20 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                 if(window.localStorage) {
                     var userInfoJson=localStorage.getItem('user');
                     var userInfo=JSON.parse(userInfoJson)
-                    return userInfo;
+                    if(userInfo!=null){
+                        $rootScope.loginCheck=true;
+                        return userInfo[0];
+                    }
+                    else {
+                        return null
+                    }
                 }
                 else{
                     return null;//待修改
                 }
             },
             setUserInfo: function (user) {
+                $rootScope.loginCheck=true;
                 if(window.localStorage) {
                     var userJson=JSON.stringify(user);
                     localStorage.setItem('user', userJson);
@@ -183,14 +190,22 @@ angular.module('liveApp.services', [  'liveApp.constants'])
     })
     .factory('socket', function ($rootScope) {
         var socket=io.connect();
+        var events=[];
         return{
             on: function (eventName, callback) {
-                socket.on(eventName, function () {
-                    var args = arguments;
-                    $rootScope.$apply(function () {
-                        callback.apply(socket, args);
+                //if(events.indexOf(eventName)==-1) {
+
+                    if(events.indexOf(eventName)!==-1){
+                        socket.removeListener(eventName);
+                    }
+                    socket.on(eventName, function () {
+                        var args = arguments;
+                        $rootScope.$apply(function () {
+                            callback.apply(socket, args);
+                        });
                     });
-                });
+                    events.push(eventName);
+                //}
             },
             emit: function (eventName, data, callback) {
                 socket.emit(eventName, data, function () {
@@ -201,6 +216,9 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                         }
                     });
                 })
+            },
+            getEvents: function () {
+                return events;
             }
         }
     })

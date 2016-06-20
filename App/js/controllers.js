@@ -28,7 +28,7 @@ angular.module('liveApp.controllers', ['liveApp.services',
             $scope.roomlist = result;
         });
         $scope.images = navigationBarService.getNavBar('main');
-        $scope.$emit('refreshScroll', '');
+        //$scope.$emit('refreshScroll', '');
     })
     .controller('mainIndex3Ctrl', function ($scope, $rootScope, liveRoomList, navigationBarService) {
         liveRoomList.getCategoryList('game', 'StandAlone', 20).then(function (result) {
@@ -59,141 +59,144 @@ angular.module('liveApp.controllers', ['liveApp.services',
         }
     })
     .controller('liveRoomCtrl', function ($scope, $stateParams, socket, userService) {
-        var roomid = $stateParams.roomid;
-        var userid = Date.now().toString();
-        if (userService.getUserInfo() != null) {
-            userid = userService.getUserInfo().Name;
-        }
-        $scope.message = [];
-        socket.on('need_nickname', function () {
-            var userInfo = {
-                roomId: roomid,
-                nickName: userid
-            }
-            socket.emit('set_nickname', userid);
-        });
-        socket.on('need_roomid', function () {
-            joinroom(roomid)
-        });
-        socket.on('server_message', function (_message) {
-            var msg = {type: "系统消息", msg: _message, time: getLocalHMS()};
-            $scope.message.push(msg);
-            chatBodyToBottom();
-        });
-        socket.on('user_say', function (_nick_name, _content) {
-            var msg = {type: _nick_name, msg: _content, time: getLocalHMS()};
-            if ($scope.message.count > 500) { //超过500条记录情况数组
-                $scope.message = [];
-            }
-            $scope.message.push(msg);
-        });
-        function joinroom(roomid) {
-            socket.emit('joinroom', roomid);
-        }
-
-        function getLocalHMS() {
-            var time = (new Date()).getTime();
-            var d = new Date();
-            return appendZero(d.getHours()) + ":" + appendZero(d.getMinutes()) + ":" + appendZero(d.getSeconds());
-        }
-
-        function appendZero(obj) {
-            if (obj < 10) return "0" + "" + obj;
-            else return obj;
-        }
-
-        function chatBodyToBottom() {
-            //var chat_body = $('.chat-body');
-            //var height = chat_body.prop("scrollHeight");
-            //chat_body.prop('scrollTop', height);
-        }
+        //var roomid = $stateParams.roomid;
+        //var userid = Date.now().toString();
+        //if (userService.getUserInfo() != null) {
+        //    userid = userService.getUserInfo().Name;
+        //}
+        //$scope.message = [];
+        //socket.on('need_nickname', function () {
+        //    var userInfo = {
+        //        roomId: roomid,
+        //        nickName: userid
+        //    }
+        //    socket.emit('set_nickname', userid);
+        //});
+        //socket.on('need_roomid', function () {
+        //    joinroom(roomid)
+        //});
+        //socket.on('server_message', function (_message) {
+        //    var msg = {type: "系统消息", msg: _message, time: getLocalHMS()};
+        //    $scope.message.push(msg);
+        //    chatBodyToBottom();
+        //});
+        //socket.on('user_say', function (_nick_name, _content) {
+        //    var msg = {type: _nick_name, msg: _content, time: getLocalHMS()};
+        //    if ($scope.message.count > 500) { //超过500条记录情况数组
+        //        $scope.message = [];
+        //    }
+        //    $scope.message.push(msg);
+        //});
+        //function joinroom(roomid) {
+        //    socket.emit('joinroom', roomid);
+        //}
+        //
+        //function getLocalHMS() {
+        //    var time = (new Date()).getTime();
+        //    var d = new Date();
+        //    return appendZero(d.getHours()) + ":" + appendZero(d.getMinutes()) + ":" + appendZero(d.getSeconds());
+        //}
+        //
+        //function appendZero(obj) {
+        //    if (obj < 10) return "0" + "" + obj;
+        //    else return obj;
+        //}
+        //
+        //function chatBodyToBottom() {
+        //    //var chat_body = $('.chat-body');
+        //    //var height = chat_body.prop("scrollHeight");
+        //    //chat_body.prop('scrollTop', height);
+        //}
     })
     .controller('myLiveRoomCtrl', function ($scope, $stateParams, socket, userService) {
-        var roomid = $stateParams.roomid;
-        var userid = Date.now().toString();
-
-        //过滤判断非法请求  调试方便，暂时注释，直接跳转
-        //liveRoomService.checkRoomByUserId(roomid,userid).then(
-        //    function (result) {
-        //        if(result.state=='success'){
-        //            $location.path('/myliveroom/'+roomid);
-        //        }
-        //        else{
-        //            $location.path('/liveroom/'+roomid);
-        //        }
-        //    },
-        //    function () {
-        //        alert('错误');
+        //var roomid = $stateParams.roomid;
+        //var userid = Date.now().toString();
+        //
+        ////过滤判断非法请求  调试方便，暂时注释，直接跳转
+        ////liveRoomService.checkRoomByUserId(roomid,userid).then(
+        ////    function (result) {
+        ////        if(result.state=='success'){
+        ////            $location.path('/myliveroom/'+roomid);
+        ////        }
+        ////        else{
+        ////            $location.path('/liveroom/'+roomid);
+        ////        }
+        ////    },
+        ////    function () {
+        ////        alert('错误');
+        ////    }
+        ////)
+        //
+        //if (userService.getUserInfo() != null) {
+        //    userid = userService.getUserInfo().Name;
+        //}
+        //$scope.message = [];
+        //socket.on('need_nickname', function () {
+        //    var userInfo = {
+        //        roomId: roomid,
+        //        nickName: userid
         //    }
-        //)
-
-        if (userService.getUserInfo() != null) {
-            userid = userService.getUserInfo().Name;
-        }
-        $scope.message = [];
-        socket.on('need_nickname', function () {
-            var userInfo = {
-                roomId: roomid,
-                nickName: userid
-            }
-            socket.emit('set_nickname', userid);
-        });
-        socket.on('need_roomid', function () {
-            joinroom(roomid)
-        });
-        //socket.on('user_join', function (_nick_name) {
-        //    var msg={type:"系统消息",msg:'[' + _nick_name + '] 进入了聊天室。',time:getLocalHMS()};
+        //    socket.emit('set_nickname', userid);
+        //});
+        //socket.on('need_roomid', function () {
+        //    joinroom(roomid)
+        //});
+        ////socket.on('user_join', function (_nick_name) {
+        ////    var msg={type:"系统消息",msg:'[' + _nick_name + '] 进入了聊天室。',time:getLocalHMS()};
+        ////    $scope.message.push(msg);
+        ////    chatBodyToBottom();
+        ////});
+        //socket.on('server_message', function (_message) {
+        //    var msg = {type: "系统消息", msg: _message, time: getLocalHMS()};
         //    $scope.message.push(msg);
         //    chatBodyToBottom();
         //});
-        socket.on('server_message', function (_message) {
-            var msg = {type: "系统消息", msg: _message, time: getLocalHMS()};
-            $scope.message.push(msg);
-            chatBodyToBottom();
-        });
-        //socket.on('user_quit', function (_nick_name) {
-        //    var msg={type:"系统消息",msg:'[' + _nick_name + '] 离开了聊天室。',time:getLocalHMS()};
+        ////socket.on('user_quit', function (_nick_name) {
+        ////    var msg={type:"系统消息",msg:'[' + _nick_name + '] 离开了聊天室。',time:getLocalHMS()};
+        ////    $scope.message.push(msg);
+        ////    chatBodyToBottom();
+        ////});
+        //socket.on('user_say', function (_nick_name, _content) {
+        //    var msg = {type: _nick_name, msg: _content, time: getLocalHMS()};
+        //    if ($scope.message.count > 500) { //超过500条记录情况数组
+        //        $scope.message = [];
+        //    }
         //    $scope.message.push(msg);
-        //    chatBodyToBottom();
         //});
-        socket.on('user_say', function (_nick_name, _content) {
-            var msg = {type: _nick_name, msg: _content, time: getLocalHMS()};
-            if ($scope.message.count > 500) { //超过500条记录情况数组
-                $scope.message = [];
-            }
-            $scope.message.push(msg);
-        });
-        $scope.say = function (_content) {
-            var message = {
-                roomId: roomid,
-                content: _content
-            }
-            var msg = {type: userid, msg: _content, time: getLocalHMS()};
-            $scope.message.push(msg);
-            socket.emit('say', message);
-            $scope.sayMessage = '';
-        }
-
-        function joinroom(roomid) {
-            socket.emit('joinroom', roomid);
-        }
-
-        function getLocalHMS() {
-            var time = (new Date()).getTime();
-            var d = new Date();
-            return appendZero(d.getHours()) + ":" + appendZero(d.getMinutes()) + ":" + appendZero(d.getSeconds());
-        }
-
-        function appendZero(obj) {
-            if (obj < 10) return "0" + "" + obj;
-            else return obj;
-        }
-
-        function chatBodyToBottom() {
-            var chat_body = $('.chat-body');
-            var height = chat_body.prop("scrollHeight");
-            chat_body.prop('scrollTop', height);
-        }
+        //$scope.say = function (content) {
+        //    if(content==""||content==undefined){
+        //        return;
+        //    }
+        //    var message = {
+        //        roomId: roomid,
+        //        content: content
+        //    }
+        //    var msg = {type: userid, msg: content, time: getLocalHMS()};
+        //    $scope.message.push(msg);
+        //    socket.emit('say', message);
+        //    $scope.sayMessage = '';
+        //}
+        //
+        //function joinroom(roomid) {
+        //    socket.emit('joinroom', roomid);
+        //}
+        //
+        //function getLocalHMS() {
+        //    var time = (new Date()).getTime();
+        //    var d = new Date();
+        //    return appendZero(d.getHours()) + ":" + appendZero(d.getMinutes()) + ":" + appendZero(d.getSeconds());
+        //}
+        //
+        //function appendZero(obj) {
+        //    if (obj < 10) return "0" + "" + obj;
+        //    else return obj;
+        //}
+        //
+        //function chatBodyToBottom() {
+        //    var chat_body = $('.chat-body');
+        //    var height = chat_body.prop("scrollHeight");
+        //    chat_body.prop('scrollTop', height);
+        //}
     })
     .controller('registerCtrl', function ($scope, $location, userService) {
         $scope.submit = function (userDetails) {
@@ -397,5 +400,8 @@ angular.module('liveApp.controllers', ['liveApp.services',
     })
     .controller('discoverMainCtrl', function ($scope, $location, liveRoomList) {
 
+    })
+    .controller('userInfoCtrl', function ($scope,userService) {
+        $scope.userInfo=userService.getUserInfo();
     })
 ;

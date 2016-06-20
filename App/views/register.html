@@ -15,25 +15,38 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input  type="number" class="form-control" ng-model="User.PhoneNumber" placeholder="手机号"/>
+                            <input required type="number" class="form-control" ng-model="User.PhoneNumber" placeholder="手机号"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input  type="text" class="form-control" ng-model="User.IdCard" placeholder="身份证号"/>
+                            <input required type="text" class="form-control" ng-model="User.IdCard" placeholder="身份证号"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input  type="password" class="form-control" ng-model="User.PassWord" placeholder="密码"/>
+                            <input required password-valid name="password"  type="password" class="form-control" ng-model="User.PassWord" placeholder="密码"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="password" class="form-control" placeholder="确认密码"/>
+                            <input required watch-compare-field="{{true}}" name="passwordrepeat" ng-model="User.pwdRepeat" compare="User.PassWord" compare-data-type="string" compare-operation="eqeqeq" type="password" class="form-control" placeholder="确认密码"/>
                         </div>
                     </div>
+                 <span ng-show="userForm.passwordrepeat.$dirty&&userForm.passwordrepeat.$invalid">密码输入不一致</span>
 
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<input name="maxSize" ng-model="User.maxSize" password-valid compare="User.minSize" compare-data-type="number" compare-operation="ge" type="text" class="form-control" placeholder="最大值"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<span ng-show="userForm.maxSize.$dirty&&userForm.maxSize.$invalid">最大值</span>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-xs-12">-->
+                            <!--<input name="minSize" ng-model="User.minSize" password-valid compare="User.maxSize" compare-data-type="number" compare-operation="le" type="text" class="form-control" placeholder="最小值"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<span ng-show="userForm.minSize.$dirty&&userForm.minSize.$invalid">最小值</span>-->
                     <div class="text-center">
                         <button  ng-click="submit(User)" ng-disabled="userForm.$invalid"
                                 class="btn btn-primary col-xs-12">注册

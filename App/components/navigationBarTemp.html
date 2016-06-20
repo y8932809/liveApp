@@ -1,5 +1,5 @@
 <div class="navBar" id="status-buttons">
     <div ng-repeat="item in menuArray">
-        <a ui-sref-active="active" ui-sref="{{item.sref}}"><span>{{item.menu}}</span></a>
+        <a ui-sref-active="active" ui-sref="{{item.sref}}" ui-sref-opts="{reload:true}"><span>{{item.menu}}</span></a>
     </div>
 </div>

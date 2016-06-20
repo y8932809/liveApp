@@ -1,0 +1,42 @@
+    <uib-tabset>
+        <uib-tab heading="直播">
+            <div class="container">
+                <div class="row">
+                    <!-- 聊天内容 -->
+                    <div class="panel panel-default">
+                        <div class="panel-body chat-body">
+                            <div class="msg-list-body">
+                                <div ng-repeat="item in messages | orderBy :'time'" class="clearfix msg-wrap">
+                                    <div class="msg-head">
+                                        <span class="msg-name label label-primary pull-left">
+                                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{item.title}}</span>
+                                        <span class="msg-time label label-default pull-left">
+                                        <span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;{{item.time}}</span>
+                                    </div>
+                                    <div class="msg-content">{{item.msg}}</div>
+                                </div>
+                                <a id="bottom"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab heading="用户列表">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-list"></span>
+                        &nbsp;在线名单
+                    </div>
+                    <div class="panel-body list-body">
+                        <table class="table table-hover list-table">
+                            <tr ng-repeat="item in userList track by $index">
+                                <td>{{item.nickName}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer" id="list-count">当前在线：{{userList.length}}人</div>
+                </div>
+        </uib-tab>
+    </uib-tabset>
+

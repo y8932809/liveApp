@@ -2,7 +2,8 @@
  * Created by user on 2016-04-20.
  */
 angular.module('liveApp.directives', [
-    'liveApp.constants'
+    'liveApp.constants',
+    'liveApp.services'
 ])
     .directive('bannersLiveRoom', function () {
         return{
@@ -128,5 +129,18 @@ angular.module('liveApp.directives', [
                 }
             }
         };
-    }]);
+    }])
+    //.directive('login', function () {
+    //    return{
+    //        restrict:'A',
+    //        template:'<div ng-if="visible" ng-include="\'../view/login.html\'">',
+    //        link: function (scope) {
+    //            var showDialog= function () {
+    //                scope.visible=true;
+    //            };
+    //            scope.visible=false;
+    //            scope.on('needLogin',showDialog);
+    //        }
+    //    }
+    //})
 ;

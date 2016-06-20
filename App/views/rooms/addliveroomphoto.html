@@ -1,10 +1,6 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-            <input type="file" nv-file-select="" uploader="uploader"   accept="image/*"  /><br/>
-            布局待修改
-        </div>
-        <button type="submit" ng-click="UploadFile()">提交</button>
+    <div style="padding: 20px;">
+        <input class="form-control" type="file" nv-file-select="" uploader="uploader"   accept="image/*"  />
+        <button style="margin-top: 20px" class="btn btn-sm btn-primary btn-block" type="submit" ng-click="UploadFile()">提交</button>
     </div>
 </div>
