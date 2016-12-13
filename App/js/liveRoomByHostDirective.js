@@ -6,6 +6,7 @@ angular.module('liveApp.directives')
     .directive('liveRoomByHost', function ($stateParams,$location,$anchorScroll, socket, userService) {
         return {
             restrict: 'EA',
+            //scope:false,//从继承隔离，变为不隔离。
             //link: function (scope, element, attrs) {
             //    var roomid = $stateParams.roomid;
             //    var userid = Date.now().toString();

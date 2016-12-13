@@ -68,7 +68,7 @@ angular.module('liveApp.services', [  'liveApp.constants'])
                 $http({
                     url:apiurl+'users/login',
                     method:'POST',
-                    data:user
+                    data:user,
                 }).success(function(result,header,config,status){
                     deferred.resolve(result);
 
